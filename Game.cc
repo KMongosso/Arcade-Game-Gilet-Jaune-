@@ -20,23 +20,26 @@ Game::Game(const char* title, int x, int y, int width, int height){
 	_width = width;
 	_height = height;
 
-	sdlInit(title, x, y, width, height);
+	sdlInit(title, x, y, width, height);		//Initialisation des éléments de la bibliothèque SDL
 
-	screen = new int*[height];
+	screen = new int*[height];			//Initialisation de la grille de l'écran
 	for(int i=0;i<height;i++){
 		screen[i] = new int[width];
 	}
 		
-	for(int i=0;i<height;i++){
+	for(int i=0;i<height;i++){			//Incrémentation de la grille de l'écran
 		for(int j=0;j<width;j++){
 			screen[j][i] = 0;
 		}
 	}
 
 	srand(time(NULL));
+	//Initialisation du nombre d'itération entre l'apparition de deux éléments du jeu
 	newA=rand()%5000+5000;
 	newF=rand()%50+200;
 	newE=rand()%200+600;
+
+	//Initialisation des fréquences d'apparence des ennemies et de des flammes 
 	ennemyFrequency = 600;
 	flameFrequency = 200;
 
@@ -198,7 +201,7 @@ void Game::addNewFlame(){
 		newF = rand()%50+flameFrequency;		//Nouveau temps d'apparition du prochain ennemi
 		iterF = 0;
 		if(iterTot%500==0){
-			if(flameFrequency>0)	//Augmentation de la duree et fréquence d'apparition de "Flame" au bout d'un certains nombre d'itération du jeu
+			if(flameFrequency>0)	//Augmentation de la duree d'apparition et diminution de la fréquence d'apparition de "Flame" au bout d'un certains nombre d'itération du jeu
 				flameFrequency -= 50;
 			Flame::duree += 200 ;
 		}
@@ -283,13 +286,10 @@ void Game::render(){
 
 		for( list <Projectile *>::iterator it = gameProjectiles.begin(); it != gameProjectiles.end(); it ++){
  			(*it)->render(renderer);
- 		
 		}
 	}
-
-	else{		//Ecran de fin
+	else		//Ecran de fin
 		carte->Draw();
-	}
 
 	tex = SDL_CreateTextureFromSurface(renderer,text);
 	SDL_RenderCopy(renderer, tex,NULL, &destText);

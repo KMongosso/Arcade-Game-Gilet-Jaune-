@@ -49,11 +49,12 @@ void Ennemy::leftEnnemyUpdate(int **screen){
 		}
 	}
 
-	if(_x<50 && !back){		//On met à jour les coordonnées de l'ennemi en fonction de si il sort de l'écran ou si il rentre
+	//On met à jour les coordonnées de l'ennemi en fonction de si il sort de l'écran (1) ou si il rentre (2)
+	if(_x<50 && !back){		 //1
 		_x+=1;
 		destRect.x+=1;	
 	}
-	else{
+	else{					//2
 		_x-=1;
 		destRect.x-=1;
 		back=1;

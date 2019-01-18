@@ -30,7 +30,6 @@ ostream& operator<<( ostream &out, Player* player){
         } 
     }
 
-
     return out;
 }
 
@@ -63,7 +62,7 @@ int main(int argc,const char * argv[]){
         	SDL_Delay(FrameDelay-frameTime);
         }
     }
-    //cout << game->getInfo();
+    
     cout << endl<<endl<<endl; 
     cout << game;
     Mix_CloseAudio();

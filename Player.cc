@@ -30,7 +30,6 @@ Player::~Player(){
 void Player::update(int **screen){
 	damage = 0;
 	playerOldData=playerData;
-	
 
 	resetPos();
 	updateScreen(screen,0);	//Réinitialise l'écran à 0 sur la position précédente du joueur
@@ -43,13 +42,12 @@ void Player::update(int **screen){
 
 	for(int i=_y;i<_y+destRect.h;i++){		//Met à jour l'écran et damage si le cas est
 		for(int j=_x;j<_x+destRect.w;j++){
-			if(screen[j][i]==3)
+			if(screen[j][i]==3)			//Indique si le joueur entre en contact avec un ennemie
 				damage = true;
 
 			screen[j][i]=1;
 		}
 	}
-
 }
 
 /*Evenement KEYDOWN (flèche appuyée dans notre cas)*/

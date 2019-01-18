@@ -48,15 +48,12 @@ Projectile::~Projectile(){
 	- si il n'existe, on le retire de l'écran 
 */
 void Projectile::update(int **screen){
-	
 	if(_x<0||_x>619||_y<0||_y>619){		//(1)
 		exist=false;
 	}
-	
 	if(exist){
 		if(!caught){		//(2)
 			updateScreen(screen,0);
-
 			if(dirx==0)
 				_x+=1;
 			else
